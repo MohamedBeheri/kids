@@ -2,9 +2,9 @@ import os
 from celery import Celery
 from celery.schedules import crontab
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'gym_system.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'kidsarea.settings')
 
-app = Celery('gym_system')
+app = Celery('kidsarea')
 
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
