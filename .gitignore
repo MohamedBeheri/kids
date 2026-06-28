@@ -34,8 +34,6 @@ backend/**/Scripts/
 # local database
 **/*.sqlite3
 
-# Ignore Django migrations
-backend/**/migrations/
 backend/**/__pycache__/
 
 # Ignore Python compiled files
