@@ -1,0 +1,27 @@
+databases:
+  - name: kidsarea-db
+    plan: free
+    databaseName: kidsarea
+    user: kidsarea
+
+services:
+  - type: web
+    name: kidsarea-backend
+    plan: free
+    runtime: python
+    rootDir: backend/kidsarea/kidsarea
+    buildCommand: chmod +x build.sh && ./build.sh
+    startCommand: gunicorn kidsarea.wsgi:application --bind 0.0.0.0:$PORT
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: kidsarea-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "false"
+      - key: ALLOWED_HOSTS
+        value: ".onrender.com"
+      - key: PYTHON_VERSION
+        value: "3.11.9"
